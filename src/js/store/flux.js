@@ -1,4 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
+	// Retorna un objeto con dos props ppals
 	return {
 		store: {
 			demo: [
@@ -19,6 +20,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
+
+			createUser: () => {
+				return fetch("https://playground.4geeks.com/contact/agendas/daniwallacedev", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({})
+				})
+				.then(resp => resp.json())
+				.then(resp => console.log(resp))
+				.catch(error => console.error('Hubo un error al realizar la solicitud:', error));
+			},
+			
+
 			loadSomeData: () => {
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
